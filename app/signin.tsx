@@ -1,12 +1,11 @@
-import React from 'react';
-import { Text, StyleSheet, useColorScheme } from 'react-native';
-import {useAuth0, Auth0Provider} from 'react-native-auth0';
-import SecondayButton from 'components/SecondayButton';
-import { Image, View } from 'tamagui';
+import SecondayButton from "components/SecondayButton";
+import { useAuth0 } from "react-native-auth0";
+import { Image, View } from "tamagui";
+import { StyleSheet } from 'react-native'
+import Colors from "constants/Colors";
 
-const Home = () => {
+const Signin = () => {
   const {authorize, clearSession, user, error, isLoading} = useAuth0();
-  const colorScheme = useColorScheme()
 
   const onLogin = async () => {
     try {
@@ -27,7 +26,7 @@ const Home = () => {
   const loggedIn = user !== undefined && user !== null;
 
   return (
-    <View style={styles.container} padding={"$4"}>
+    <View theme="dark" padding={"$4"}>
       {/* {loggedIn && <Text>You are logged in as {user.name}</Text>}
       {!loggedIn && <Text>You are not logged in</Text>}
       {error && <Text>{error.message}</Text>} */}
@@ -43,19 +42,14 @@ const Home = () => {
   );
 };
 
-const App = () => {
-  return (
-      <Home />
-  );
-};
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  }
-});
+    justifyContent: 'center',
+    padding: 20,
+    backgroundColor: Colors.dark.background
+  },
+})
 
-export default App;
+export default Signin;
