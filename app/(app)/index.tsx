@@ -8,6 +8,8 @@ import Text from "components/Text";
 import ProductCard from "components/ProductCard/indext";
 import { useState } from "react";
 import { Dimensions } from "react-native";
+import testData from "testData";
+
 
 const App = () => {
   const { authorize, clearSession, user, error, isLoading } = useAuth0();
@@ -17,7 +19,7 @@ const App = () => {
 
   return (
     <ScrollView overScrollMode="never" >
-      <YStack style={globalStyles.container}>
+      <YStack >
         {/* <Text fontSize={"$1"} color="white">
           App Main
         </Text>
@@ -31,18 +33,9 @@ const App = () => {
             justifyContent="space-between"
             gap={"$4"}
           >
-            <ProductCard />
-            <ProductCard />
-            <ProductCard />
-            <ProductCard />
-            <ProductCard />
-            <ProductCard />
-            <ProductCard />
-            <ProductCard />
-            <ProductCard />
-            <ProductCard />
-            <ProductCard />
-            <ProductCard />
+            {testData.products.map((product, index) => (
+              <ProductCard key={index} {...product} />
+            ))}
           </XStack>
         </ScrollView>
       </YStack>

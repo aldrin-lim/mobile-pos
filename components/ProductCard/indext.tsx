@@ -1,8 +1,16 @@
 import Text from "components/Text";
 import type { CardProps } from "tamagui";
 import { Button, Card, H2, Image, Paragraph, View, XStack } from "tamagui";
+import * as Icon from "@tamagui/lucide-icons";
+import { formatToPeso } from "util/currency";
 
-export default function ProductCard() {
+type ProductCardProps = {
+  image?: string;
+  name?: string;
+  availability?: string;
+};
+export default function ProductCard(props: ProductCardProps) {
+  const { image, name = "", availability, price } = props;
   return (
     // <XStack $sm={{ flexDirection: 'column' }} paddingHorizontal="$4" space>
     <Card
@@ -15,17 +23,34 @@ export default function ProductCard() {
       pressStyle={{ scale: 0.875 }}
       // elevate
     >
-      <Image
-        borderTopRightRadius={"$4"}
-        borderTopLeftRadius={"$4"}
-        resizeMode="cover"
-        alignSelf="center"
-        source={{
-          width: 160,
-          height: 90,
-          uri: "https://upload.wikimedia.org/wikipedia/commons/f/f1/2ChocolateChipCookies.jpg",
-        }}
-      />
+      {image && (
+        <Image
+          borderTopRightRadius={"$4"}
+          borderTopLeftRadius={"$4"}
+          resizeMode="cover"
+          alignSelf="center"
+          source={{
+            width: 160,
+            height: 90,
+            uri: "https://upload.wikimedia.org/wikipedia/commons/f/f1/2ChocolateChipCookies.jpg",
+          }}
+        />
+      )}
+      {!image && (
+        <View
+          width={160}
+          height={90}
+          backgroundColor={"rgb(209, 213, 219)"}
+          borderTopRightRadius={"$4"}
+          borderTopLeftRadius={"$4"}
+          flex={1}
+          justifyContent="center"
+          alignItems="center"
+        >
+          <Icon.Image color={"rgb(156, 163, 175)"} size="$6" />
+        </View>
+      )}
+
       {/* Price */}
       <Text
         position="absolute"
@@ -39,7 +64,7 @@ export default function ProductCard() {
         paddingHorizontal={"$1.5"}
         borderRadius={"$1"}
       >
-        ₱40.00
+        {formatToPeso(price)}
       </Text>
       <View padding={"$1"} paddingHorizontal={"$2"}>
         {/* Product Name */}
@@ -50,11 +75,11 @@ export default function ProductCard() {
           numberOfLines={1}
           ellipsizeMode="middle"
         >
-          Chocolate Cookies ss2
+          {name}
         </Text>
         {/* Status */}
         <Text color={"black"} alignSelf="flex-start" fontSize={"$5"}>
-          Card
+          {availability}
         </Text>
       </View>
     </Card>
