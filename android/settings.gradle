@@ -1,4 +1,4 @@
-rootProject.name = 'Qrafter - POS'
+rootProject.name = 'Qrafter POS'
 
 dependencyResolutionManagement {
   versionCatalogs {

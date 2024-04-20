@@ -1870,6 +1870,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@expo-google-fonts/poppins@npm:^0.2.3":
+  version: 0.2.3
+  resolution: "@expo-google-fonts/poppins@npm:0.2.3"
+  checksum: 7a9468ce14027205adb442f1f19cc6eae0d0289b82fb2b729cc410b87f5a0d9ca201b70a7ae3ccaa9ea306b37cc12e76f9289a99d6ce02f0d6b10ecc1c3f2f92
+  languageName: node
+  linkType: hard
+
 "@expo/bunyan@npm:^4.0.0":
   version: 4.0.0
   resolution: "@expo/bunyan@npm:4.0.0"
@@ -9597,6 +9604,7 @@ __metadata:
   resolution: "mobile-pos@workspace:."
   dependencies:
     "@babel/core": "npm:^7.23.3"
+    "@expo-google-fonts/poppins": "npm:^0.2.3"
     "@expo/metro-runtime": "npm:~3.1.3"
     "@react-navigation/native": "npm:^6.0.2"
     "@tamagui/config": "npm:^1.94.5"
