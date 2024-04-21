@@ -8,7 +8,9 @@ type ProductCardProps = {
   image?: string;
   name?: string;
   availability?: string;
+  price: number;
 };
+
 export default function ProductCard(props: ProductCardProps) {
   const { image, name = "", availability, price } = props;
   return (

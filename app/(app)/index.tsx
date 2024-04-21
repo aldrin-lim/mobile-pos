@@ -9,7 +9,8 @@ import ProductCard from "components/ProductCard/indext";
 import { useState } from "react";
 import { Dimensions } from "react-native";
 import testData from "testData";
-
+import { Home01Icon } from "@hugeicons/react-native-pro";
+import { Home } from "@tamagui/lucide-icons";
 
 const App = () => {
   const { authorize, clearSession, user, error, isLoading } = useAuth0();
@@ -18,13 +19,15 @@ const App = () => {
   const windowHeight = Dimensions.get("window").height;
 
   return (
-    <ScrollView overScrollMode="never" >
-      <YStack >
+    <ScrollView overScrollMode="never">
+      <YStack>
         {/* <Text fontSize={"$1"} color="white">
           App Main
         </Text>
         <SecondayButton onPress={onLogout}>Log out</SecondayButton> */}
-        <Text color={'white'} size={'$10'}>Products</Text>
+        <Text color={"white"} size={"$10"}>
+          Products
+        </Text>
         <ScrollView maxHeight={windowHeight - 160} overScrollMode="never">
           <XStack
             $sm={{ flexDirection: "row" }}

@@ -34,6 +34,10 @@ import {
   Poppins_900Black_Italic,
 } from '@expo-google-fonts/poppins';
 
+import {hugeiconsLicense} from "@hugeicons/react-native-pro";
+
+hugeiconsLicense('1e5c20d45105bd54d05da68bc2ccf1d0RT0xNzEyMjgxNjM4MDAwLFM9cHJvLFY9MSxQPUd1bXJvYWQsU1Q9QkY0MEE0RjcsRVQ9Q0FFMjUzOTI=');
+
 export {
   // Catch any errors thrown by the Layout component.
   ErrorBoundary,
