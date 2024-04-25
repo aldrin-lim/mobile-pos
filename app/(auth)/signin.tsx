@@ -14,7 +14,10 @@ const Signin = () => {
   const onLogin = async () => {
    
     try {
-      await authorize();
+      await authorize({
+        audience: 'https://dev-xaod5c1kipyephrr.us.auth0.com/api/v2/',
+        connection: 'Username-Password-Authentication',
+      });
       console.log('Logged in');
     } catch (e) {
       console.log(e);

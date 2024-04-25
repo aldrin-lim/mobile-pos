@@ -13,20 +13,36 @@ import {
 } from "@react-navigation/drawer";
 import Colors from "constants/Colors";
 import { X } from "@tamagui/lucide-icons";
-import { tokens } from "@tamagui/config/v3";
-import { Home } from "@tamagui/lucide-icons";
-import { Book } from "@tamagui/lucide-icons";
-import { LogOut } from "@tamagui/lucide-icons";
-
+import { LogOut, Cog, Book, Home } from "@tamagui/lucide-icons";
+import axios from "axios";
+import useAxios from "axios-hooks";
+import { useEffect, useState } from "react";
+import appConfig from "config/appConfig";
+import usePullData from "hooks/usePullData";
+import { sync } from "db/sync";
+import { RootSiblingParent } from 'react-native-root-siblings';
+import {  Spinner } from "tamagui";
 
 export default () => {
   const router = useRouter();
-  const { authorize, clearSession, user, error, isLoading } = useAuth0();
+  const { authorize, clearSession, user, error, isLoading, getCredentials } =
+    useAuth0();
+  const [token, setToken] = useState("");
+
+  useEffect(() => {
+    getCredentials().then((credentials) => {
+      setToken(credentials?.accessToken ?? "");
+    });
+  }, []);
+
+  console.log('isLoading', isLoading)
+
+
 
   if (isLoading) {
     return (
       <View style={styles.container}>
-        <Text>Loading</Text>
+        <Spinner scale="$1" size="large" />
       </View>
     );
   }
@@ -84,13 +100,23 @@ export default () => {
             ),
           }}
         />
+        <Drawer.Screen
+          name="settings/index"
+          options={{
+            drawerLabel: "Settings",
+            title: "Settings",
+            drawerIcon: ({ focused }) => (
+              <Cog size={24} color="white" marginRight="$-4" />
+            ),
+          }}
+        />
       </Drawer>
     </GestureHandlerRootView>
   );
 };
 
 const CustomDrawerContent = (props: DrawerContentComponentProps) => {
-  const { user } = useAuth0();
+  const { user, clearSession } = useAuth0();
   return (
     <DrawerContentScrollView
       {...props}
@@ -153,10 +179,13 @@ const CustomDrawerContent = (props: DrawerContentComponentProps) => {
                   marginTop: "auto",
                 }}
                 label={() => <Text style={{ color: "white" }}>Logout</Text>}
-                onPress={() => {
+                onPress={async () => {
                   // props.navigation.closeDrawer();
+                  await clearSession();
                 }}
-                icon={() => <LogOut size={24} color="white" marginRight="$-4"  />}
+                icon={() => (
+                  <LogOut size={24} color="white" marginRight="$-4" />
+                )}
               />
             </YStack>
           </YStack>

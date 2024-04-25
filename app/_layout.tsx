@@ -1,6 +1,4 @@
-import {
-  ThemeProvider,
-} from "@react-navigation/native";
+import { ThemeProvider } from "@react-navigation/native";
 import { SplashScreen, Stack } from "expo-router";
 import { TamaguiProvider } from "tamagui";
 import { Auth0Provider } from "react-native-auth0";
@@ -32,11 +30,18 @@ import {
   Poppins_800ExtraBold_Italic,
   Poppins_900Black,
   Poppins_900Black_Italic,
-} from '@expo-google-fonts/poppins';
+} from "@expo-google-fonts/poppins";
 
-import {hugeiconsLicense} from "@hugeicons/react-native-pro";
+import { RootSiblingParent } from "react-native-root-siblings";
 
-hugeiconsLicense('1e5c20d45105bd54d05da68bc2ccf1d0RT0xNzEyMjgxNjM4MDAwLFM9cHJvLFY9MSxQPUd1bXJvYWQsU1Q9QkY0MEE0RjcsRVQ9Q0FFMjUzOTI=');
+import { hugeiconsLicense } from "@hugeicons/react-native-pro";
+import PrimaryButton from "components/PrimaryButton";
+import Toast from "react-native-toast-message";
+import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
+
+hugeiconsLicense(
+  "1e5c20d45105bd54d05da68bc2ccf1d0RT0xNzEyMjgxNjM4MDAwLFM9cHJvLFY9MSxQPUd1bXJvYWQsU1Q9QkY0MEE0RjcsRVQ9Q0FFMjUzOTI="
+);
 
 export {
   // Catch any errors thrown by the Layout component.
@@ -52,8 +57,7 @@ export {
 SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
-
-  const [poppinsLoaded, poppinsError ] = useFonts({
+  const [poppinsLoaded, poppinsError] = useFonts({
     Poppins_100Thin,
     Poppins_100Thin_Italic,
     Poppins_200ExtraLight,
@@ -96,10 +100,13 @@ function RootLayoutNav() {
     >
       <TamaguiProvider config={config} defaultTheme={"dark"}>
         <ThemeProvider value={darkTheme}>
-          <Stack>
-            <Stack.Screen name="(app)" options={{ headerShown: false }} />
-            <Stack.Screen name="(auth)" options={{ headerShown: false }} />
-          </Stack>
+          {/* <RootSiblingParent> */}
+            <Stack>
+              <Stack.Screen name="(app)" options={{ headerShown: false }} />
+              <Stack.Screen name="(auth)" options={{ headerShown: false }} />
+            </Stack>
+            <Toast  />
+          {/* </RootSiblingParent> */}
         </ThemeProvider>
       </TamaguiProvider>
     </Auth0Provider>

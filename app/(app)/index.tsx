@@ -6,17 +6,21 @@ import SecondayButton from "components/SecondayButton";
 import { useAuth0 } from "react-native-auth0";
 import Text from "components/Text";
 import ProductCard from "components/ProductCard/indext";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Dimensions } from "react-native";
 import testData from "testData";
 import { Home01Icon } from "@hugeicons/react-native-pro";
 import { Home } from "@tamagui/lucide-icons";
+import PrimaryButton from "components/PrimaryButton";
 
 const App = () => {
   const { authorize, clearSession, user, error, isLoading } = useAuth0();
   const {} = useAuth0();
 
   const windowHeight = Dimensions.get("window").height;
+  const query = async () => {
+
+  }
 
   return (
     <ScrollView overScrollMode="never">
@@ -36,9 +40,9 @@ const App = () => {
             justifyContent="space-between"
             gap={"$4"}
           >
-            {testData.products.map((product, index) => (
+            {/* {testData.products.map((product, index) => (
               <ProductCard key={index} {...product} />
-            ))}
+            ))} */}
           </XStack>
         </ScrollView>
       </YStack>
